@@ -1,343 +1,374 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pinjaman Dana Jaminan BPKB</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pinjaman Dana BPKB Motor</title>
   <style>
-    :root {
-      --primary: #28a745;
-      --secondary: #25D366;
-      --background: #f5f5f5;
-      --text: #333;
-      --header-bg: #006400;
-      --button-hover: #218838;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: var(--background);
-      color: var(--text);
-    }
-    header {
-      background-color: var(--header-bg);
-      color: white;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 5px solid var(--primary);
-      border-radius: 0 0 20px 20px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      font-weight: bold;
-    }
-    h2 {
-      text-align: center;
-      font-size: 1.8rem;
-      color: var(--primary);
-      margin-top: 20px;
-    }
+  /* Tombol WhatsApp melayang */
+#floating-wa-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    font-size: 24px;
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+#floating-wa-button:hover {
+    transform: scale(1.1);
+}
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    margin-top: 30px;
+  }
+
+  h1 {
+    font-size: 24px;
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #495057;
+    font-weight: 600;
+  }
+
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+  }
+
+  select:focus {
+    border-color: #007bff;
+    outline: none;
+    background-color: #fff;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  #hasil {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e9f7ef;
+    border-left: 5px solid #28a745;
+    border-radius: 10px;
+    color: #155724;
+    font-size: 16px;
+  }
+
+  #whatsappButton {
+    display: none;
+    width: 100%;
+    background-color: #25D366;
+    color: white;
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+
+  #whatsappButton:hover {
+    background-color: #1ebe5b;
+  }
+
+  @media (max-width: 600px) {
     .container {
-      background: white;
-      padding: 30px;
-      margin: 30px auto;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      max-width: 600px;
+      margin: 20px;
+      padding: 15px;
     }
-    .banner img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+    h1 {
+      font-size: 20px;
     }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    label {
-      font-weight: bold;
-      font-size: 1rem;
-      color: var(--primary);
-      display: block;
-      margin-bottom: 8px;
-    }
-    select, input {
-      width: 100%;
+
+    button,
+    #whatsappButton {
+      font-size: 15px;
       padding: 12px;
-      border-radius: 8px;
-      border: 2px solid #ccc;
-      font-size: 1rem;
     }
-    select:focus, input:focus {
-      border-color: var(--primary);
-      outline: none;
+
+    select {
+      font-size: 15px;
+      padding: 8px;
     }
-    button {
-      width: 100%;
-      padding: 15px;
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      margin-top: 20px;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: var(--button-hover);
-    }
-    .whatsapp-btn {
-      background-color: var(--secondary);
-      margin-top: 15px;
-      padding: 15px;
-      font-size: 1.2rem;
-      transition: background-color 0.3s ease;
-    }
-    .whatsapp-btn:hover {
-      background-color: #128C7E;
-    }
-    #result, #cicilanResult {
-      margin-top: 30px;
-      text-align: center;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-    #result span, #cicilanResult span {
-      display: block;
-      margin-top: 10px;
-      font-size: 1rem;
-      color: #555;
-    }
-    .testimonials {
-      text-align: center;
-      margin-top: 30px;
-      padding: 20px;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-    .testimonial {
-      font-style: italic;
-      margin-bottom: 20px;
-      color: #555;
-    }
-    .testimonial strong {
-      color: var(--primary);
-      font-weight: bold;
-    }
-    ul {
-      text-align: left;
-      font-size: 1rem;
-      color: #555;
-    }
-    li {
-      margin-bottom: 10px;
-    }
-    .disclaimer {
-      margin-top: 20px;
-      font-size: 0.9rem;
-      color: #888;
-      text-align: center;
-    }
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      .container {
-        padding: 20px;
-      }
-    }
-  </style>
+  }
+</style>
+
 </head>
+<!-- Tombol WhatsApp Melayang -->
+<a href="https://wa.me/62881023341621?text=HALLO%20BISA%20MINTA%20INFO%20UNTUK%20DATA%20KENDARAAN%20SAYA%20GA%20ADA%20DI%20LIST%20PENGAJUAN" target="_blank" id="floating-wa-button" title="Hubungi Admin">
+    💬
+</a>
+
 <body>
-  <header>
-    <h1>Pinjaman Dana Cepat dengan Jaminan BPKB</h1>
-  </header>
-
-  <div class="banner">
-    <img src="FB_IMG_1744436442733.jpg" alt="Banner Perusahaan">
-  </div>
-
   <div class="container">
-    <h2>Form Pengajuan Pinjaman</h2>
-    <form id="loanForm">
-      <div class="form-group">
-        <label for="vehicleType">Jenis Kendaraan:</label>
-        <select id="vehicleType" required>
-          <option value="">-- Pilih --</option>
-          <option value="motor">Motor</option>
-          <option value="mobil">Mobil</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="vehicleBrand">Merek:</label>
-        <select id="vehicleBrand" required>
-          <option value="">-- Pilih --</option>
-          <option value="honda">Honda</option>
-          <option value="yamaha">Yamaha</option>
-          <option value="suzuki">Suzuki</option>
-          <option value="kawasaki">Kawasaki</option>
-          <option value="toyota">Toyota</option>
-          <option value="daihatsu">Daihatsu</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="vehicleModel">Model:</label>
-        <select id="vehicleModel" required>
-          <option value="">-- Pilih --</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="vehicleYear">Tahun Kendaraan:</label>
-        <select id="vehicleYear" required>
-          <option value="">-- Pilih --</option>
-          <option value="2017">2017</option>
-          <option value="2018">2018</option>
-          <option value="2019">2019</option>
-          <option value="2020">2020</option>
-          <option value="2021">2021</option>
-          <option value="2022">2022</option>
-          <option value="2023">2023</option>
-          <option value="2024">2024</option>
-          <option value="2025">2025</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="ownershipStatus">Status Kepemilikan:</label>
-        <select id="ownershipStatus" required>
-          <option value="">-- Pilih --</option>
-          <option value="pribadi">Milik Sendiri</option>
-          <option value="oranglain">Orang Lain</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="tenor">Tenor (bulan):</label>
-        <select id="tenor" required>
-          <option value="">-- Pilih --</option>
-          <option value="6">6 bulan</option>
-          <option value="12">12 bulan</option>
-          <option value="18">18 bulan</option>
-          <option value="24">24 bulan</option>
-        </select>
-      </div>
-      <button type="submit">Hitung Dana Maksimal</button>
-    </form>
-    <a href="https://wa.me/62881023341621" target="_blank">
-      <button class="whatsapp-btn">Konsultasi via WhatsApp</button>
-    </a>
-    <div id="result"></div>
-    <div id="cicilanResult"></div>
-    <div style="margin-top: 20px;">
-      <h4>Kendaraan Populer:</h4>
-      <ul>
-        <li>Honda Vario 2020 – hingga Rp 18.000.000</li>
-        <li>Toyota Avanza 2019 – hingga Rp 55.000.000</li>
-        <li>Suzuki Ertiga 2021 – hingga Rp 60.000.000</li>
-      </ul>
+    <h1>Pinjaman Dana dengan Jaminan BPKB Motor</h1>
+
+    <!-- Form kamu tetap -->
+    <div class="form-group">
+      <label for="merk">Pilih Merk Motor:</label>
+      <select id="merk">
+        <option value="Honda">Honda</option>
+        <option value="Yamaha">Yamaha</option>
+      </select>
     </div>
-  </div>
 
-  <div class="testimonials">
-    <h2>Testimoni Konsumen</h2>
-    <div class="testimonial">"Proses cepat dan mudah, dalam 1 hari dana cair!"<strong>– Budi, Bandung</strong></div>
-    <div class="testimonial">"Sangat membantu usaha kecil saya saat butuh modal tambahan."<strong>– Rina, Garut</strong></div>
-    <div class="testimonial">"Pelayanan ramah dan profesional."<strong>– Andi, Tasikmalaya</strong></div>
-  </div>
+    <div class="form-group">
+      <label for="model">Pilih Model Motor:</label>
+      <select id="model">
+        <option value="Beat CBS">Beat CBS</option>
+        <option value="Vario 125">Vario 125</option>
+        <option value="PCX ABS">PCX ABS</option>
+        <option value="Scoopy Smartkey">Scoopy Smartkey</option>
+        <option value="CBR 150">CBR 150</option>
+        <option value="Nmax ABS">Nmax ABS</option>
+        <option value="Aerox 155">Aerox 155</option>
+        <option value="Mio J">Mio J</option>
+        <option value="R15">R15</option>
+      </select>
+    </div>
 
-  <div class="disclaimer">
-    <p><strong>Pinjaman maksimal dan cicilan bersifat sementara. Untuk perhitungan lebih akurat, konsultasikan dengan admin.</strong></p>
+    <div class="form-group">
+      <label for="tahun">Pilih Tahun Motor:</label>
+      <select id="tahun">
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="kepemilikan">Kepemilikan:</label>
+      <select id="kepemilikan">
+        <option value="sendiri">Miliki Sendiri</option>
+        <option value="lain">Bukan Milik Sendiri</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="tenor">Pilih Tenor (Bulan):</label>
+      <select id="tenor">
+        <option value="12">12 Bulan</option>
+        <option value="24">24 Bulan</option>
+        <option value="36">36 Bulan</option>
+      </select>
+    </div>
+
+    <button onclick="hitungPinjaman()">Hitung Pinjaman</button>
+    
+    <div id="hasil"></div>
+
+<!-- Keterangan -->
+<p id="keterangan" style="display:none; margin-top: 15px; font-size: 14px; font-weight: 600; color: #2ecc71; background-color: #eafaf1; border: 1px solid #2ecc71; padding: 12px; border-radius: 8px; text-align: center;">
+  ⚠️ PENCAIRAN DAN CICILAN BERSIFAT SEMENTARA.<br>UNTUK PERHITUNGAN LEBIH AKURAT, HUBUNGI ADMIN.
+</p>
+
+<!-- Tombol WhatsApp -->
+<a id="waLink" href="#" target="_blank" style="display:none; text-decoration: none;">
+  <button style="margin-top: 15px; background-color: #25D366; border: none; padding: 12px; color: white; font-size: 16px; font-weight: bold; border-radius: 8px; width: 100%;">
+    💬 Ajukan Sekarang via WhatsApp
+  </button>
+</a>
+
+
+    <a id="whatsappButton" href="#" target="_blank">Ajukan Sekarang via WhatsApp</a>
   </div>
 
   <script>
     const dataKendaraan = {
-      motor: {
-        honda: ["Beat", "Vario", "PCX", "Scoopy", "CRF"],
-        yamaha: ["Mio", "NMax", "Aerox", "Aerox Connected", "Vixion", "R15", "R25", "Fino", "Gear", "Exride"],
-        suzuki: ["Satria", "Smash", "GSX"],
-        kawasaki: ["Ninja", "W175", "KLX"]
+      // ... (data kendaraan tetap seperti milikmu)
+      "Honda": {
+        "Beat CBS": {
+          "2017": 12250000,
+          "2018": 13130000,
+          "2019": 14000000,
+          "2020": 14880000,
+          "2021": 15750000,
+          "2022": 16630000,
+          "2023": 17500000,
+          "2024": 18380000
+        },
+        "Vario 125": {
+          "2017": 14700000,
+          "2018": 15750000,
+          "2019": 16800000,
+          "2020": 17850000,
+          "2021": 18900000,
+          "2022": 19950000,
+          "2023": 21000000,
+          "2024": 22050000
+        },
+        "PCX ABS": {
+          "2017": 32000000,
+          "2018": 34000000,
+          "2019": 36000000,
+          "2020": 38000000,
+          "2021": 40000000,
+          "2022": 42000000,
+          "2023": 44000000,
+          "2024": 46000000
+        },
+        "Scoopy Smartkey": {
+          "2017": 16000000,
+          "2018": 17000000,
+          "2019": 18000000,
+          "2020": 19000000,
+          "2021": 20000000,
+          "2022": 21000000,
+          "2023": 22000000,
+          "2024": 23000000
+        },
+        "CBR 150": {
+          "2017": 26000000,
+          "2018": 28130000,
+          "2019": 30250000,
+          "2020": 32380000,
+          "2021": 34500000,
+          "2022": 36630000,
+          "2023": 38750000,
+          "2024": 40880000
+        }
       },
-      mobil: {
-        toyota: ["Avanza", "Rush", "Agya", "Calya"],
-        daihatsu: ["Xenia", "Sigra", "Ayla"],
-        honda_mobil: ["Brio", "Mobilio", "Jazz", "HR-V"],
-        suzuki_mobil: ["Ertiga", "Karimun", "Ignis"],
-        nissan: ["Livina", "X-Trail", "March"]
+      "Yamaha": {
+        "Nmax ABS": {
+          "2017": 22750000,
+          "2018": 24380000,
+          "2019": 26000000,
+          "2020": 27630000,
+          "2021": 29250000,
+          "2022": 30880000,
+          "2023": 32500000,
+          "2024": 34130000
+        },
+        "Aerox 155": {
+          "2017": 23350000,
+          "2018": 24800000,
+          "2019": 26350000,
+          "2020": 27900000,
+          "2021": 29450000,
+          "2022": 31000000,
+          "2023": 32550000,
+          "2024": 34000000
+        },
+        "Mio J": {
+          "2017": 11000000,
+          "2018": 11500000,
+          "2019": 12000000,
+          "2020": 12500000,
+          "2021": 13000000,
+          "2022": 13500000,
+          "2023": 14000000,
+          "2024": 14500000
+        },
+        "R15": {
+          "2017": 36000000,
+          "2018": 37500000,
+          "2019": 39000000,
+          "2020": 40500000,
+          "2021": 42000000,
+          "2022": 43500000,
+          "2023": 45000000,
+          "2024": 46500000
+        }
       }
     };
 
-    const hargaKendaraan = {
-      honda: {
-        Beat: { 2017: 12000000, 2018: 13000000, 2019: 14000000 },
-        Vario: { 2017: 14000000, 2018: 15000000, 2019: 16000000 }
-      },
-      yamaha: {
-        Mio: { 2017: 10000000, 2018: 11000000, 2019: 12000000 }
-      },
-      toyota: {
-        Avanza: { 2017: 190000000, 2018: 200000000, 2019: 210000000 }
-      },
-      // Tambahkan data kendaraan lainnya
-    };
+    function hitungPinjaman() {
+      const merk = document.getElementById("merk").value;
+      const model = document.getElementById("model").value;
+      const tahun = parseInt(document.getElementById("tahun").value);
+      const kepemilikan = document.getElementById("kepemilikan").value;
+      const tenor = parseInt(document.getElementById("tenor").value);
 
-    document.getElementById('vehicleBrand').addEventListener('change', function () {
-      const brand = this.value;
-      const type = document.getElementById('vehicleType').value;
-      const modelSelect = document.getElementById('vehicleModel');
-      modelSelect.innerHTML = '<option value="">-- Pilih --</option>';
-      const kendaraanData = dataKendaraan[type]?.[brand];
-      if (kendaraanData) {
-        kendaraanData.forEach(model => {
-          const opt = document.createElement('option');
-          opt.value = model;
-          opt.textContent = model;
-          modelSelect.appendChild(opt);
-        });
-      }
-    });
+      const hargaMotor = dataKendaraan[merk][model][tahun];
+      const plafonPinjaman = hargaMotor * 0.8;
+      const cicilan = plafonPinjaman / tenor;
 
-    document.getElementById('loanForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const type = document.getElementById('vehicleType').value;
-      const brand = document.getElementById('vehicleBrand').value;
-      const model = document.getElementById('vehicleModel').value;
-      const year = parseInt(document.getElementById('vehicleYear').value);
-      const ownership = document.getElementById('ownershipStatus').value;
-      const tenor = parseInt(document.getElementById('tenor').value);
-
-      if (!type || !brand || !model || !year || !ownership || !tenor) {
-        alert("Harap lengkapi semua data!");
-        return;
-      }
-
-      const hargaKendaraanModel = hargaKendaraan[brand]?.[model]?.[year];
-      if (!hargaKendaraanModel) {
-        alert("Data harga kendaraan tidak ditemukan.");
-        return;
-      }
-
-      const maxPinjaman = ownership === 'pribadi' ? hargaKendaraanModel * 0.8 : hargaKendaraanModel * 0.6;
-      const bunga = 0.015 * maxPinjaman;
-      const totalPinjaman = maxPinjaman + bunga * tenor;
-      const cicilanBulanan = totalPinjaman / tenor;
-
-      document.getElementById('result').innerHTML = `
-        Pinjaman Maksimal: Rp ${maxPinjaman.toLocaleString()} 
-        <span>Pinjaman ini bersifat sementara dan untuk perhitungan lebih akurat, 
-        <strong>konsultasikan dengan admin</strong>.</span>
+      const hasil = `
+        <strong>Plafon Pinjaman:</strong> Rp ${plafonPinjaman.toLocaleString()} <br>
+        <strong>Cicilan per bulan:</strong> Rp ${cicilan.toLocaleString()}
       `;
-      document.getElementById('cicilanResult').innerHTML = `
-        Cicilan per bulan: Rp ${cicilanBulanan.toLocaleString()} 
-        <span>Pinjaman ini bersifat sementara dan untuk perhitungan lebih akurat, 
-        <strong>konsultasikan dengan admin</strong>.</span>
-      `;
-    });
+      // Menampilkan hasil
+document.getElementById("hasil").innerHTML = hasil;
+
+// Tampilkan keterangan
+document.getElementById("keterangan").style.display = "block";
+
+// Buat link WhatsApp
+const pesan = `Halo Admin, saya ingin mengajukan pinjaman dengan data berikut:
+- Merk: ${merk}
+- Model: ${model}
+- Tahun: ${tahun}
+- Kepemilikan: ${kepemilikan}
+- Tenor: ${tenor} bulan
+- Plafon Pinjaman: Rp ${plafonPinjaman.toLocaleString()}
+- Cicilan per Bulan: Rp ${cicilan.toLocaleString()}`;
+
+const linkWA = `https://wa.me/62881023341621?text=${encodeURIComponent(pesan)}`;
+
+// Tampilkan tombol WhatsApp
+const waLink = document.getElementById("waLink");
+waLink.href = linkWA;
+waLink.style.display = "block";
+
+	  
+    }
   </script>
 </body>
 </html>
