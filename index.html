@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinjaman Dana Jaminan BPKB</title>
+  <style>
+    :root {
+      --primary: #28a745;
+      --secondary: #25D366;
+      --background: #f5f5f5;
+      --text: #333;
+      --header-bg: #006400;
+      --button-hover: #218838;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+    }
+    header {
+      background-color: var(--header-bg);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 5px solid var(--primary);
+      border-radius: 0 0 20px 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-top: 20px;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      margin: 30px auto;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+    }
+    .banner img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: bold;
+      font-size: 1rem;
+      color: var(--primary);
+      display: block;
+      margin-bottom: 8px;
+    }
+    select, input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid #ccc;
+      font-size: 1rem;
+    }
+    select:focus, input:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: var(--button-hover);
+    }
+    .whatsapp-btn {
+      background-color: var(--secondary);
+      margin-top: 15px;
+      padding: 15px;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+    }
+    .whatsapp-btn:hover {
+      background-color: #128C7E;
+    }
+    #result, #cicilanResult {
+      margin-top: 30px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    #result span, #cicilanResult span {
+      display: block;
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #555;
+    }
+    .testimonials {
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    .testimonial {
+      font-style: italic;
+      margin-bottom: 20px;
+      color: #555;
+    }
+    .testimonial strong {
+      color: var(--primary);
+      font-weight: bold;
+    }
+    ul {
+      text-align: left;
+      font-size: 1rem;
+      color: #555;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    .disclaimer {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #888;
+      text-align: center;
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Pinjaman Dana Cepat dengan Jaminan BPKB</h1>
+  </header>
+
+  <div class="banner">
+    <img src="FB_IMG_1744436442733.jpg" alt="Banner Perusahaan">
+  </div>
+
+  <div class="container">
+    <h2>Form Pengajuan Pinjaman</h2>
+    <form id="loanForm">
+      <div class="form-group">
+        <label for="vehicleType">Jenis Kendaraan:</label>
+        <select id="vehicleType" required>
+          <option value="">-- Pilih --</option>
+          <option value="motor">Motor</option>
+          <option value="mobil">Mobil</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="vehicleBrand">Merek:</label>
+        <select id="vehicleBrand" required>
+          <option value="">-- Pilih --</option>
+          <option value="honda">Honda</option>
+          <option value="yamaha">Yamaha</option>
+          <option value="suzuki">Suzuki</option>
+          <option value="kawasaki">Kawasaki</option>
+          <option value="toyota">Toyota</option>
+          <option value="daihatsu">Daihatsu</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="vehicleModel">Model:</label>
+        <select id="vehicleModel" required>
+          <option value="">-- Pilih --</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="vehicleYear">Tahun Kendaraan:</label>
+        <select id="vehicleYear" required>
+          <option value="">-- Pilih --</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="ownershipStatus">Status Kepemilikan:</label>
+        <select id="ownershipStatus" required>
+          <option value="">-- Pilih --</option>
+          <option value="pribadi">Milik Sendiri</option>
+          <option value="oranglain">Orang Lain</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tenor">Tenor (bulan):</label>
+        <select id="tenor" required>
+          <option value="">-- Pilih --</option>
+          <option value="6">6 bulan</option>
+          <option value="12">12 bulan</option>
+          <option value="18">18 bulan</option>
+          <option value="24">24 bulan</option>
+        </select>
+      </div>
+      <button type="submit">Hitung Dana Maksimal</button>
+    </form>
+    <a href="https://wa.me/6281234567890" target="_blank">
+      <button class="whatsapp-btn">Konsultasi via WhatsApp</button>
+    </a>
+    <div id="result"></div>
+    <div id="cicilanResult"></div>
+    <div style="margin-top: 20px;">
+      <h4>Kendaraan Populer:</h4>
+      <ul>
+        <li>Honda Vario 2020 – hingga Rp 18.000.000</li>
+        <li>Toyota Avanza 2019 – hingga Rp 55.000.000</li>
+        <li>Suzuki Ertiga 2021 – hingga Rp 60.000.000</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="testimonials">
+    <h2>Testimoni Konsumen</h2>
+    <div class="testimonial">"Proses cepat dan mudah, dalam 1 hari dana cair!"<strong>– Budi, Bandung</strong></div>
+    <div class="testimonial">"Sangat membantu usaha kecil saya saat butuh modal tambahan."<strong>– Rina, Garut</strong></div>
+    <div class="testimonial">"Pelayanan ramah dan profesional."<strong>– Andi, Tasikmalaya</strong></div>
+  </div>
+
+  <div class="disclaimer">
+    <p><strong>Pinjaman maksimal dan cicilan bersifat sementara. Untuk perhitungan lebih akurat, konsultasikan dengan admin.</strong></p>
+  </div>
+
+  <script>
+    const dataKendaraan = {
+      motor: {
+        honda: ["Beat", "Vario", "PCX", "Scoopy", "CRF"],
+        yamaha: ["Mio", "NMax", "Aerox", "Aerox Connected", "Vixion", "R15", "R25", "Fino", "Gear", "Exride"],
+        suzuki: ["Satria", "Smash", "GSX"],
+        kawasaki: ["Ninja", "W175", "KLX"]
+      },
+      mobil: {
+        toyota: ["Avanza", "Rush", "Agya", "Calya"],
+        daihatsu: ["Xenia", "Sigra", "Ayla"],
+        honda_mobil: ["Brio", "Mobilio", "Jazz", "HR-V"],
+        suzuki_mobil: ["Ertiga", "Karimun", "Ignis"],
+        nissan: ["Livina", "X-Trail", "March"]
+      }
+    };
+
+    const hargaKendaraan = {
+      honda: {
+        Beat: { 2017: 12000000, 2018: 13000000, 2019: 14000000 },
+        Vario: { 2017: 14000000, 2018: 15000000, 2019: 16000000 }
+      },
+      yamaha: {
+        Mio: { 2017: 10000000, 2018: 11000000, 2019: 12000000 }
+      },
+      toyota: {
+        Avanza: { 2017: 190000000, 2018: 200000000, 2019: 210000000 }
+      },
+      // Tambahkan data kendaraan lainnya
+    };
+
+    document.getElementById('vehicleBrand').addEventListener('change', function () {
+      const brand = this.value;
+      const type = document.getElementById('vehicleType').value;
+      const modelSelect = document.getElementById('vehicleModel');
+      modelSelect.innerHTML = '<option value="">-- Pilih --</option>';
+      const kendaraanData = dataKendaraan[type]?.[brand];
+      if (kendaraanData) {
+        kendaraanData.forEach(model => {
+          const opt = document.createElement('option');
+          opt.value = model;
+          opt.textContent = model;
+          modelSelect.appendChild(opt);
+        });
+      }
+    });
+
+    document.getElementById('loanForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const type = document.getElementById('vehicleType').value;
+      const brand = document.getElementById('vehicleBrand').value;
+      const model = document.getElementById('vehicleModel').value;
+      const year = parseInt(document.getElementById('vehicleYear').value);
+      const ownership = document.getElementById('ownershipStatus').value;
+      const tenor = parseInt(document.getElementById('tenor').value);
+
+      if (!type || !brand || !model || !year || !ownership || !tenor) {
+        alert("Harap lengkapi semua data!");
+        return;
+      }
+
+      const hargaKendaraanModel = hargaKendaraan[brand]?.[model]?.[year];
+      if (!hargaKendaraanModel) {
+        alert("Data harga kendaraan tidak ditemukan.");
+        return;
+      }
+
+      const maxPinjaman = ownership === 'pribadi' ? hargaKendaraanModel * 0.8 : hargaKendaraanModel * 0.6;
+      const bunga = 0.015 * maxPinjaman;
+      const totalPinjaman = maxPinjaman + bunga * tenor;
+      const cicilanBulanan = totalPinjaman / tenor;
+
+      document.getElementById('result').innerHTML = `
+        Pinjaman Maksimal: Rp ${maxPinjaman.toLocaleString()} 
+        <span>Pinjaman ini bersifat sementara dan untuk perhitungan lebih akurat, 
+        <strong>konsultasikan dengan admin</strong>.</span>
+      `;
+      document.getElementById('cicilanResult').innerHTML = `
+        Cicilan per bulan: Rp ${cicilanBulanan.toLocaleString()} 
+        <span>Pinjaman ini bersifat sementara dan untuk perhitungan lebih akurat, 
+        <strong>konsultasikan dengan admin</strong>.</span>
+      `;
+    });
+  </script>
+</body>
+</html>
