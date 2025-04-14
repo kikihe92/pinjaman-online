@@ -6,6 +6,64 @@
   <title>Pinjaman Dana BPKB Motor</title>
   <link rel="stylesheet" href="styles.css">
   <style>
+  .syarat-box {
+    max-width: 700px;
+    margin: 40px auto;
+    background: #f9f9f9;
+    border: 2px solid #ddd;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .syarat-box h2 {
+    color: #1a73e8;
+    font-size: 24px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .syarat-box ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .syarat-box ul li {
+    background: #e3f2fd;
+    margin: 8px 0;
+    padding: 12px 16px;
+    border-radius: 8px;
+    position: relative;
+    padding-left: 36px;
+    font-size: 16px;
+  }
+
+  .syarat-box ul li::before {
+    content: "✔️";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: green;
+  }
+
+  .syarat-box p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .highlight {
+    background: #fff8e1;
+    padding: 12px;
+    border-left: 4px solid #ffc107;
+    margin-top: 20px;
+    border-radius: 8px;
+    font-style: italic;
+  }
+  
   /* Tombol WhatsApp melayang */
 #floating-wa-button {
     position: fixed;
@@ -295,7 +353,7 @@
   "Aerox 155 old": { 2017: 15000000, 2018: 16000000, 2019: 17000000, 2020: 18000000, 2021: 0, 2022: 0, 2023: 0, 2024: 0, 2025: 0 },
   "Aerox 155 connected ABS": { 2017:0 , 2018: 0, 2019: 0, 2020: 0, 2021: 32000000, 2022: 33000000, 2023: 34000000, 2024: 35000000, 2025: 36000000 },
   "Aerox 155 connected NON ABS": { 2017: 0, 2018: 0, 2019: 0, 2020: 0, 2021: 31000000, 2022: 32000000, 2023: 33000000, 2024: 34000000, 2025: 35000000 },
-  "Mio J": { 2017: 15000000, 2018: 15500000, 2019: 16000000, 2020: 16500000, 2021: 17000000, 2022: 17500000, 2023: 18000000, 2024: 18500000, 2025: 19000000 },
+  "Mio J": { 2017: 7000000, 2018: 8500000, 2019: 9000000, 2020: 10500000, 2021: 11000000, 2022: 12500000, 2023: 13000000, 2024: 14500000, 2025: 15000000 },
   "R15": { 2017: 18500000, 2018: 19000000, 2019: 21000000, 2020: 22000000, 2021: 23000000, 2022: 24000000, 2023: 25000000, 2024: 26000000, 2025: 27000000 },
   "R25": { 2017: 21000000, 2018: 25000000, 2019: 26000000, 2020: 27000000, 2021: 28000000, 2022: 29000000, 2023: 30000000, 2024: 31000000, 2025: 62000000 },
   "WR": { 2017: 15500000, 2018: 16000000, 2019: 16500000, 2020: 17000000, 2021: 17500000, 2022: 18000000, 2023: 18500000, 2024: 19000000, 2025: 19500000 },
@@ -305,7 +363,7 @@
   "XSR 155": { 2017: 44000000, 2018: 45000000, 2019: 46000000, 2020: 47000000, 2021: 48000000, 2022: 49000000, 2023: 50000000, 2024: 51000000, 2025: 52000000 },
   "Lexi S": { 2017: 21500000, 2018: 22500000, 2019: 23500000, 2020: 24500000, 2021: 25500000, 2022: 26500000, 2023: 27500000, 2024: 28500000, 2025: 29500000 },
   "Filano": { 2017: 18900000, 2018: 20250000, 2019: 21600000, 2020: 22950000, 2021: 24300000, 2022: 25650000, 2023: 27000000, 2024: 28350000, 2025: 27000000 },
-  "Fino": { 2017: 15500000, 2018: 16000000, 2019: 16500000, 2020: 17000000, 2021: 17500000, 2022: 18000000, 2023: 18500000, 2024: 19000000, 2025: 19500000 },
+  "Fino": { 2017: 7000000, 2018: 8500000, 2019: 9000000, 2020: 10500000, 2021: 11000000, 2022: 12500000, 2023: 13000000, 2024: 14500000, 2025: 15000000 },
   "Xride": { 2017: 8000000, 2018: 9000000, 2019: 9000000, 2020: 10000000, 2021: 10000000, 2022: 11000000, 2023: 12000000, 2024: 13000000, 2025: 15000000, },
 		// tambahkan model lainnya...
       }
@@ -347,21 +405,27 @@
       document.getElementById("waLink").style.display = "block";
     }
   </script>
+ 
+<div class="syarat-box">
   <h2>📄 Persyaratan Pencairan Dana Tunai Jaminan BPKB Motor</h2>
-<p>Untuk proses pencairan yang <strong>cepat</strong> dan <strong>aman</strong>, silakan lengkapi dokumen berikut:</p>
-<ul>
-  <li>✅ Fotokopi KTP (Suami & Istri jika sudah menikah)</li>
-  <li>✅ Fotokopi Kartu Keluarga</li>
-  <li>✅ Fotokopi STNK</li>
-  <li>✅ BPKB Asli & Fotokopi</li>
-  <li>✅ Motor atas nama sendiri (atau bisa balik nama)</li>
-  <li>✅ Bukti usaha / slip gaji (jika ada)</li>
-  <li>✅ Nomor HP yang aktif & bisa dihubungi</li>
-  <li>✅ Usia kendaraan maksimal 10 tahun (disesuaikan)</li>
-</ul>
-<p><strong>💡 Proses cepat!</strong><br>
-Cair dalam hitungan jam setelah berkas lengkap dan disetujui.</p>
-<p><em>Motor tetap bisa digunakan seperti biasa. Tanpa BI Checking. Bisa survei ke rumah!</em></p>
+  <p>Untuk proses pencairan yang <strong>cepat</strong> dan <strong>aman</strong>, silakan lengkapi dokumen berikut:</p>
+  <ul>
+    <li>Fotokopi KTP (Suami & Istri jika sudah menikah)</li>
+    <li>Fotokopi Kartu Keluarga</li>
+    <li>Fotokopi STNK</li>
+    <li>BPKB Asli & Fotokopi</li>
+    <li>Motor atas nama sendiri (atau bisa balik nama)</li>
+    <li>Bukti usaha / slip gaji (jika ada)</li>
+    <li>Nomor HP yang aktif & bisa dihubungi</li>
+    <li>Usia kendaraan maksimal 10 tahun (disesuaikan)</li>
+  </ul>
+
+  <div class="highlight">
+    💡 <strong>Proses cepat!</strong> Cair dalam hitungan jam setelah berkas lengkap dan disetujui.
+    <br>Motor tetap bisa digunakan seperti biasa. <strong>Tanpa BI Checking</strong> & bisa survei ke rumah!
+  </div>
+</div>
+
 
 </body>
 </html>
