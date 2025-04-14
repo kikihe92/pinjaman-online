@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pinjaman Dana BPKB Motor</title>
+  <link rel="stylesheet" href="styles.css">
   <style>
   /* Tombol WhatsApp melayang */
 #floating-wa-button {
@@ -144,188 +145,142 @@
     }
   }
 </style>
-
 </head>
-<!-- Tombol WhatsApp Melayang -->
-<a href="https://wa.me/62881023341621?text=HALLO%20BISA%20MINTA%20INFO%20UNTUK%20DATA%20KENDARAAN%20SAYA%20GA%20ADA%20DI%20LIST%20PENGAJUAN" target="_blank" id="floating-wa-button" title="Hubungi Admin">
-    💬
-</a>
-
 <body>
+  <!-- Tombol WhatsApp Melayang -->
+  <a href="https://wa.me/62881023341621?text=HALLO%20BISA%20MINTA%20INFO%20UNTUK%20DATA%20KENDARAAN%20SAYA%20GA%20ADA%20DI%20LIST%20PENGAJUAN" target="_blank" id="floating-wa-button" title="Hubungi Admin">
+    💬
+  </a>
+
   <div class="container">
     <h1>Pinjaman Dana dengan Jaminan BPKB Motor</h1>
 
-    <!-- Form kamu tetap -->
-    <div class="form-group">
-      <label for="merk">Pilih Merk Motor:</label>
-      <select id="merk">
-        <option value="Honda">Honda</option>
-        <option value="Yamaha">Yamaha</option>
-      </select>
-    </div>
+    <form action="simpan_data.php" method="POST">
+      <div class="form-group">
+        <label for="merk">Pilih Merk Motor:</label>
+        <select id="merk" name="merk" required onchange="updateModelMotor()">
+          <option value="">-- Pilih Merk --</option>
+          <option value="Honda">Honda</option>
+          <option value="Yamaha">Yamaha</option>
+        </select>
+      </div>
 
-    <div class="form-group">
-      <label for="model">Pilih Model Motor:</label>
-      <select id="model">
-        <option value="Beat CBS">Beat CBS</option>
-        <option value="Vario 125">Vario 125</option>
-        <option value="PCX ABS">PCX ABS</option>
-        <option value="Scoopy Smartkey">Scoopy Smartkey</option>
-        <option value="CBR 150">CBR 150</option>
-        <option value="Nmax ABS">Nmax ABS</option>
-        <option value="Aerox 155">Aerox 155</option>
-        <option value="Mio J">Mio J</option>
-        <option value="R15">R15</option>
-      </select>
-    </div>
+      <div class="form-group">
+        <label for="model">Pilih Model Motor:</label>
+        <select id="model" name="model" required>
+          <option value="">-- Pilih Model --</option>
+        </select>
+      </div>
 
-    <div class="form-group">
-      <label for="tahun">Pilih Tahun Motor:</label>
-      <select id="tahun">
-        <option value="2017">2017</option>
-        <option value="2018">2018</option>
-        <option value="2019">2019</option>
-        <option value="2020">2020</option>
-        <option value="2021">2021</option>
-        <option value="2022">2022</option>
-        <option value="2023">2023</option>
-        <option value="2024">2024</option>
-      </select>
-    </div>
+      <div class="form-group">
+        <label for="tahun">Pilih Tahun Motor:</label>
+        <select id="tahun" name="tahun" required>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+        </select>
+      </div>
 
-    <div class="form-group">
-      <label for="kepemilikan">Kepemilikan:</label>
-      <select id="kepemilikan">
-        <option value="sendiri">Miliki Sendiri</option>
-        <option value="lain">Bukan Milik Sendiri</option>
-      </select>
-    </div>
+      <div class="form-group">
+        <label for="kepemilikan">Kepemilikan:</label>
+        <select id="kepemilikan" name="kepemilikan" required>
+          <option value="sendiri">Miliki Sendiri</option>
+          <option value="lain">Bukan Milik Sendiri</option>
+        </select>
+      </div>
 
-    <div class="form-group">
-      <label for="tenor">Pilih Tenor (Bulan):</label>
-      <select id="tenor">
-        <option value="12">12 Bulan</option>
-        <option value="24">24 Bulan</option>
-        <option value="36">36 Bulan</option>
-      </select>
-    </div>
+      <div class="form-group">
+        <label for="tenor">Pilih Tenor (Bulan):</label>
+        <select id="tenor" name="tenor" required>
+          <option value="12">12 Bulan</option>
+          <option value="24">18 Bulan</option>
+		  <option value="24">24 Bulan</option>
+          <option value="36">36 Bulan</option>
+        </select>
+      </div>
 
-    <button onclick="hitungPinjaman()">Hitung Pinjaman</button>
-    
-    <div id="hasil"></div>
+      <input type="hidden" name="plafon" id="plafonInput">
+      <input type="hidden" name="cicilan" id="cicilanInput">
 
-<!-- Keterangan -->
-<p id="keterangan" style="display:none; margin-top: 15px; font-size: 14px; font-weight: 600; color: #2ecc71; background-color: #eafaf1; border: 1px solid #2ecc71; padding: 12px; border-radius: 8px; text-align: center;">
-  ⚠️ PENCAIRAN DAN CICILAN BERSIFAT SEMENTARA.<br>UNTUK PERHITUNGAN LEBIH AKURAT, HUBUNGI ADMIN.
-</p>
-
-<!-- Tombol WhatsApp -->
-<a id="waLink" href="#" target="_blank" style="display:none; text-decoration: none;">
-  <button style="margin-top: 15px; background-color: #25D366; border: none; padding: 12px; color: white; font-size: 16px; font-weight: bold; border-radius: 8px; width: 100%;">
-    💬 Ajukan Sekarang via WhatsApp
-  </button>
-</a>
-
-
-    <a id="whatsappButton" href="#" target="_blank">Ajukan Sekarang via WhatsApp</a>
+      <button type="button" onclick="hitungPinjaman()">Hitung Pinjaman</button>
+      <div id="hasil"></div>
+      <p id="keterangan"></p>
+      <a id="waLink" href="#" target="_blank" style="display: none;">
+        <button type="submit">💬 Ajukan Sekarang via WhatsApp</button>
+      </a>
+    </form>
   </div>
 
+  <!-- Script Data dan Logika -->
   <script>
+    const modelPerMerk = {
+      Honda: [
+        "Beat CBS",
+        "Vario 125",
+        "PCX ABS",
+        "Scoopy Smartkey",
+        "CBR 150",
+        "Beat Street",
+        "Revo Fit",
+        "Supra X 125 FI",
+        "Genio CBS"
+      ],
+      Yamaha: [
+        "Nmax ABS",
+        "Aerox 155",
+        "Mio J",
+        "R15",
+        "Gear 125",
+        "FreeGo",
+        "XSR 155",
+        "Lexi S",
+		"Filano",
+		"Fino",
+      ]
+    };
+
+    function updateModelMotor() {
+      const merk = document.getElementById("merk").value;
+      const modelSelect = document.getElementById("model");
+      modelSelect.innerHTML = "";
+
+      if (modelPerMerk[merk]) {
+        modelPerMerk[merk].forEach(function(model) {
+          const option = document.createElement("option");
+          option.value = model;
+          option.textContent = model;
+          modelSelect.appendChild(option);
+        });
+      } else {
+        const option = document.createElement("option");
+        option.value = "";
+        option.textContent = "Model tidak tersedia";
+        modelSelect.appendChild(option);
+      }
+    }
+
     const dataKendaraan = {
-      // ... (data kendaraan tetap seperti milikmu)
-      "Honda": {
-        "Beat CBS": {
-          "2017": 12250000,
-          "2018": 13130000,
-          "2019": 14000000,
-          "2020": 14880000,
-          "2021": 15750000,
-          "2022": 16630000,
-          "2023": 17500000,
-          "2024": 18380000
-        },
-        "Vario 125": {
-          "2017": 14700000,
-          "2018": 15750000,
-          "2019": 16800000,
-          "2020": 17850000,
-          "2021": 18900000,
-          "2022": 19950000,
-          "2023": 21000000,
-          "2024": 22050000
-        },
-        "PCX ABS": {
-          "2017": 32000000,
-          "2018": 34000000,
-          "2019": 36000000,
-          "2020": 38000000,
-          "2021": 40000000,
-          "2022": 42000000,
-          "2023": 44000000,
-          "2024": 46000000
-        },
-        "Scoopy Smartkey": {
-          "2017": 16000000,
-          "2018": 17000000,
-          "2019": 18000000,
-          "2020": 19000000,
-          "2021": 20000000,
-          "2022": 21000000,
-          "2023": 22000000,
-          "2024": 23000000
-        },
-        "CBR 150": {
-          "2017": 26000000,
-          "2018": 28130000,
-          "2019": 30250000,
-          "2020": 32380000,
-          "2021": 34500000,
-          "2022": 36630000,
-          "2023": 38750000,
-          "2024": 40880000
-        }
+      Honda: {
+        "Beat CBS": { 2017: 8000000, 2018: 9000000, 2019: 10000000, 2020: 11000000, 2021: 12000000, 2022: 13000000, 2023: 13500000 },
+        "Vario 125": { 2017: 9000000, 2018: 11000000, 2019: 12000000, 2020: 13000000, 2021: 14000000, 2022: 14500000, 2023: 15000000 },
+        "PCX ABS": { 2017: 14000000, 2018: 16000000, 2019: 18000000, 2020: 22000000, 2021: 23000000, 2022: 24000000, 2023: 25000000 },
+        // tambahkan model lainnya...
       },
-      "Yamaha": {
-        "Nmax ABS": {
-          "2017": 22750000,
-          "2018": 24380000,
-          "2019": 26000000,
-          "2020": 27630000,
-          "2021": 29250000,
-          "2022": 30880000,
-          "2023": 32500000,
-          "2024": 34130000
-        },
-        "Aerox 155": {
-          "2017": 23350000,
-          "2018": 24800000,
-          "2019": 26350000,
-          "2020": 27900000,
-          "2021": 29450000,
-          "2022": 31000000,
-          "2023": 32550000,
-          "2024": 34000000
-        },
-        "Mio J": {
-          "2017": 11000000,
-          "2018": 11500000,
-          "2019": 12000000,
-          "2020": 12500000,
-          "2021": 13000000,
-          "2022": 13500000,
-          "2023": 14000000,
-          "2024": 14500000
-        },
-        "R15": {
-          "2017": 36000000,
-          "2018": 37500000,
-          "2019": 39000000,
-          "2020": 40500000,
-          "2021": 42000000,
-          "2022": 43500000,
-          "2023": 45000000,
-          "2024": 46500000
-        }
+      Yamaha: {
+        "Nmax ABS": { 2020: 21000000, 2021: 22000000, 2022: 23000000, 2023: 24000000 },
+        "Aerox 155": { 2020: 19000000, 2021: 20000000, 2022: 21000000, 2023: 22000000 },
+        "Mio J": { 2017: 5000000 ,2018: 7000000, 2019: 8000000, 2020: 8500000 },
+		 "R15": { 2019: 22000000, 2020: 23000000, 2021: 24000000, 2022: 25000000, 2023: 26000000, 2024: 27000000, 2025: 28000000 },
+		 "Gear 125": { 2017: 12600000, 2018: 13500000, 2019: 14400000, 2020: 15300000, 2021: 16200000, 2022: 17100000, 2023: 18000000, 2024: 18900000, 2025: 18000000 },
+        "Filano": { 2017: 18900000, 2018: 20250000, 2019: 21600000, 2020: 22950000 ,2021: 24300000, 2022: 25650000, 2023: 27000000, 2024: 28350000, 2025: 27000000 },
+		"Fino": { 2017: 14350000, 2018: 15560000, 2019: 16780000, 2020: 18000000, 2021: 19210000, 2022: 20430000, 2023: 21650000, 2024: 22860000, 2025: 20500000 },
+		// tambahkan model lainnya...
       }
     };
 
@@ -336,38 +291,33 @@
       const kepemilikan = document.getElementById("kepemilikan").value;
       const tenor = parseInt(document.getElementById("tenor").value);
 
+      // Validasi data tersedia
+      if (!dataKendaraan[merk] || !dataKendaraan[merk][model] || !dataKendaraan[merk][model][tahun]) {
+        document.getElementById("hasil").innerHTML = "<strong style='color:red;'>❌ Data motor tidak sesuai atau belum tersedia.</strong>";
+        document.getElementById("keterangan").style.display = "none";
+        document.getElementById("waLink").style.display = "none";
+        return;
+      }
+
       const hargaMotor = dataKendaraan[merk][model][tahun];
       const plafonPinjaman = hargaMotor * 0.8;
-      const cicilan = plafonPinjaman / tenor;
+      const cicilan = (plafonPinjaman / tenor) * 1.48;
 
-      const hasil = `
+      document.getElementById("plafonInput").value = plafonPinjaman;
+      document.getElementById("cicilanInput").value = cicilan;
+
+      document.getElementById("hasil").innerHTML = `
         <strong>Plafon Pinjaman:</strong> Rp ${plafonPinjaman.toLocaleString()} <br>
         <strong>Cicilan per bulan:</strong> Rp ${cicilan.toLocaleString()}
       `;
-      // Menampilkan hasil
-document.getElementById("hasil").innerHTML = hasil;
 
-// Tampilkan keterangan
-document.getElementById("keterangan").style.display = "block";
+      document.getElementById("keterangan").style.display = "block";
+      document.getElementById("keterangan").innerHTML = `⚠️ PENCAIRAN DAN CICILAN BERSIFAT SEMENTARA.<br>UNTUK PERHITUNGAN LEBIH AKURAT, HUBUNGI ADMIN.`;
 
-// Buat link WhatsApp
-const pesan = `Halo Admin, saya ingin mengajukan pinjaman dengan data berikut:
-- Merk: ${merk}
-- Model: ${model}
-- Tahun: ${tahun}
-- Kepemilikan: ${kepemilikan}
-- Tenor: ${tenor} bulan
-- Plafon Pinjaman: Rp ${plafonPinjaman.toLocaleString()}
-- Cicilan per Bulan: Rp ${cicilan.toLocaleString()}`;
-
-const linkWA = `https://wa.me/62881023341621?text=${encodeURIComponent(pesan)}`;
-
-// Tampilkan tombol WhatsApp
-const waLink = document.getElementById("waLink");
-waLink.href = linkWA;
-waLink.style.display = "block";
-
-	  
+      const pesan = `Halo Admin, saya ingin mengajukan pinjaman dengan data berikut:\n- Merk: ${merk}\n- Model: ${model}\n- Tahun: ${tahun}\n- Kepemilikan: ${kepemilikan}\n- Tenor: ${tenor} bulan\n- Plafon: Rp ${plafonPinjaman.toLocaleString()}\n- Cicilan: Rp ${cicilan.toLocaleString()}`;
+      const linkWA = `https://wa.me/62881023341621?text=${encodeURIComponent(pesan)}`;
+      document.getElementById("waLink").href = linkWA;
+      document.getElementById("waLink").style.display = "block";
     }
   </script>
 </body>
